@@ -838,14 +838,15 @@ causes the kernel to prefer to reclaim dentries and inodes.</item>
     <string name="pref_g_speed_summary">Uncap 3g speed</string>
     <string name="pref_gpu_title">GPU Acceleration</string>
     <string name="pref_gpu_summary">Enable hardware acceleration where the GPU controls the UI instead of the CPU</string>
-	<string name="pref_lcd_title">Change LCD density</string>
-	<string name="pref_lcd_summary">Set your desired LCD density</string>
-	<string name="pref_lcd_default">480</string>
-	<string name="pref_lcd_alt_summary">Screen density: %s</string>
+    <string name="pref_lcd_title">Change LCD density</string>
+    <string name="pref_lcd_summary">Set your desired LCD density</string>
+    <string name="pref_lcd_default">480</string>
+    <string name="pref_lcd_alt_summary">Screen density: %s</string>
     
     <!-- Init.d -->
     <string name="header_summary_init_d">@null</string>
-    <string name="init_d_title">Init.d Tweaks</string>
+    <string name="init_d_title">7comp Init.d scripts</string>
+    <string name="app_name">7comp Init.d Conf</string>
     <string name="pt_general">General</string>
     <string name="pt_zipalign_apks">Zipalign apps</string>
     <string name="ps_zipalign_apks">Zipalign any unaligned apps on each boot</string>
@@ -888,8 +889,8 @@ causes the kernel to prefer to reclaim dentries and inodes.</item>
     <string name="ps_journalism">Enable/disable journalism tweaks</string>
     <string name="pt_sqlite3">Enable sqlite3</string>
     <string name="ps_sqlite3">Enable/disable sqlite3 tweaks</string>
-    <string name="pt_wifisleep">Enable wifi sleep</string>
-    <string name="ps_wifisleep">Enable/disable wifi sleep tweaks</string>
+    <string name="pt_wifisleep">Enable Wi-FI sleep</string>
+    <string name="ps_wifisleep">Enable/disable Wi-FI sleep tweaks</string>
     <string name="pt_iostats">Enable iostats</string>
     <string name="ps_iostats">Enable/disable iostats</string>
     <string name="pt_setrenice">Enable setrenice</string>
@@ -900,11 +901,14 @@ causes the kernel to prefer to reclaim dentries and inodes.</item>
     <string name="ps_speedy_modified">Enable/disable Speedy modified tweaks</string>
     <string name="pt_loopy_smoothness_tweak">Enable loopy smoothness</string>
     <string name="ps_loopy_smoothness_tweak">Enable/disable loopy smoothness tweaks</string>
-    <string name="pt_init_d_credits">Developed by:</string>
-    <string name="ps_init_d_credits">Jared Rummler (JRummy16)</string>
+    <string name="pt_init_d_credits">Modified by:</string>
+    <string name="ps_init_d_credits">scott.hart.bti</string>
     <string name="dt_init_d_error">Init.d error</string>
-    <string name="dm_init_d_error">It looks like init.d isn\'t setup properly. Blame Kenneth!</string>
+    <string name="dm_init_d_error">It looks like init.d isn\'t setup properly. Please contact your ROM developer.</string>
     <string name="db_exit">Exit</string>
+    <!-- Init.d Settings : Warning dialog -->
+    <string name="init_warning_title">Please Read First</string>
+    <string name="init_warning">The 7comp Init.d scripts have been added to this build for experimental purposes only.  While some people may see improved performance on certain phones, there is always the possibility that some phones may not benefit from the scripts and you may actually see a negative impact.  The ideal situation is to find the right combination of scripts that provides the best bang for your buck while keeping a certain level of stability.</string>
     
     <!-- PropModder -->
     <string-array name="entries_wifi_scan" translatable="false">

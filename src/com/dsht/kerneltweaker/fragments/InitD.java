@@ -26,12 +26,27 @@ import android.util.Log;
 
 public class InitD extends PreferenceFragment implements OnPreferenceChangeListener {
 
-	private static final String KEY_ZIPALIGN_APKS = "zipalign_apks";
-	private static final String KEY_FIX_PERMISSIONS = "fix_permissions";
-	private static final String KEY_CLEAR_DATA_CACHE = "clear_data_cache";
-	private static final String KEY_ENABLE_CRON = "enable_cron";
-	private static final String KEY_FILE_SYSTEM_SPEEDUPS = "file_system_speedups";
-	private static final String REMOUNT_CMD = "busybox mount -o %s,remount /dev/block/mmcblk0p1 /system";
+    private static final String KEY_ZIPALIGN_APKS = "zipalign_apks";
+    private static final String KEY_FIX_PERMISSIONS = "fix_permissions";
+    private static final String KEY_CLEAR_DATA_CACHE = "clear_data_cache";
+    private static final String KEY_ENABLE_CRON = "enable_cron";
+    private static final String KEY_FILE_SYSTEM_SPEEDUPS = "file_system_speedups";
+    private static final String KEY_ENABLE_SYSCTL = "enable_sysctl";
+    private static final String KEY_SD_BOOST = "sd_boost";
+    private static final String KEY_BATTERY = "battery";
+    private static final String KEY_TOUCH = "touch";
+    private static final String KEY_MINFREE = "minfree";
+    private static final String KEY_GPURENDER = "gpurender";
+    private static final String KEY_SLEEPERS = "sleepers";
+    private static final String KEY_JOURNALISM = "journalism";
+    private static final String KEY_SQLITE3 = "sqlite3";
+    private static final String KEY_WIFISLEEP = "wifisleep";
+    private static final String KEY_IOSTATS = "iostats";
+    private static final String KEY_SENTRENICE = "sentrenice";
+    private static final String KEY_TWEAKY = "tweaky";
+    private static final String KEY_SPEEDY_MODIFIED = "speedy_modified";
+    private static final String KEY_LOOPY_SMOOTHNESS_TWEAK = "loopy_smoothness_tweak";
+    private static final String REMOUNT_CMD = "busybox mount -o %s,remount /dev/block/mmcblk0p1 /system";
 
 	private static final String[] KEYS = {
 		KEY_ZIPALIGN_APKS, //0
@@ -39,6 +54,21 @@ public class InitD extends PreferenceFragment implements OnPreferenceChangeListe
 		KEY_CLEAR_DATA_CACHE,  //2
 		KEY_ENABLE_CRON, //3
 		KEY_FILE_SYSTEM_SPEEDUPS, //4
+		KEY_ENABLE_SYSCTL, //5
+		KEY_SD_BOOST, //6
+		KEY_BATTERY, //7
+		KEY_TOUCH, //8
+		KEY_MINFREE, //9
+		KEY_GPURENDER, //10
+		KEY_SLEEPERS, //11
+		KEY_JOURNALISM, //12
+		KEY_SQLITE3, //13
+		KEY_WIFISLEEP, //14
+		KEY_IOSTATS, //15
+		KEY_SENTRENICE, //16
+		KEY_TWEAKY, //17
+		KEY_SPEEDY_MODIFIED, //18
+		KEY_LOOPY_SMOOTHNESS_TWEAK, //19
 	};
 
 	protected SharedPreferences mPrefs;
@@ -47,6 +77,21 @@ public class InitD extends PreferenceFragment implements OnPreferenceChangeListe
 	private CheckBoxPreference mClearCache;
 	private CheckBoxPreference mEnableCron;
 	private CheckBoxPreference mSysSpeedup;
+	private CheckBoxPreference mEnableSystl;
+	private CheckBoxPreference mSdBoost;
+	private CheckBoxPreference mBattery;
+	private CheckBoxPreference mtouch;
+	private CheckBoxPreference mMinFree;
+	private CheckBoxPreference mgpuRenderer;
+	private CheckBoxPreference mSleepers;
+	private CheckBoxPreference mJournalism;
+	private CheckBoxPreference mSqlite;
+	private CheckBoxPreference mWifiSleep;
+	private CheckBoxPreference mIoStats;
+	private CheckBoxPreference mSentrenice;
+	private CheckBoxPreference mTweaks;
+	private CheckBoxPreference mSpeedyModified;
+	private CheckBoxPreference mLoopSmoothTweak;
 
 	private static InitD sActivity;
 	private static final String SCRIPT_HEAD = "#!/system/bin/sh";
@@ -59,6 +104,21 @@ public class InitD extends PreferenceFragment implements OnPreferenceChangeListe
 	private static final String FIXPERMS_FILE = "07fixperms";
 	private static final String CRON_FILE = "09cron";
 	private static final String TWEAKS_FILE = "98tweaks";
+	private static final String SYSCTL_FILE = "08sysctl";
+	private static final String SDBOOST_FILE = "10sdboost";
+	private static final String BATTERY_FILE = "11battery";
+	private static final String TOUCH_FILE = "12touch";
+	private static final String MINFREE_FILE = "13minfree";
+	private static final String GPU_FILE = "14gpurender";
+	private static final String SLEEP_FILE = "15sleepers";
+	private static final String JOURNAL_FILE = "16journalism";
+	private static final String SQLITE_FILE = "17sqlite3";
+	private static final String WIFI_FILE = "18wifisleep";
+	private static final String IOS_FILE = "19iostats";
+	private static final String SETRENICE_FILE = "20setrenice";
+	private static final String TWEAKY_FILE = "21tweaks";
+	private static final String SPEED_FILE = "24speedy_modified";
+	private static final String SMOOTH_FILE = "25loopy_smoothness_tweak";
 
 	public static InitD whatActivity() {
 		return sActivity;
@@ -76,12 +136,42 @@ public class InitD extends PreferenceFragment implements OnPreferenceChangeListe
 		mClearCache = (CheckBoxPreference) findPreference(KEYS[2]);
 		mEnableCron = (CheckBoxPreference) findPreference(KEYS[3]);
 		mSysSpeedup = (CheckBoxPreference) findPreference(KEYS[4]);
+		mEnableSystl = (CheckBoxPreference) findPreference(KEYS[5]);
+		mSdBoost = (CheckBoxPreference) findPreference(KEYS[6]);
+		mBattery = (CheckBoxPreference) findPreference(KEYS[7]);
+		mtouch = (CheckBoxPreference) findPreference(KEYS[8]);
+		mMinFree = (CheckBoxPreference) findPreference(KEYS[9]);
+		mgpuRenderer = (CheckBoxPreference) findPreference(KEYS[10]);
+		mSleepers = (CheckBoxPreference) findPreference(KEYS[11]);
+		mJournalism = (CheckBoxPreference) findPreference(KEYS[12]);
+		mSqlite = (CheckBoxPreference) findPreference(KEYS[13]);
+		mWifiSleep = (CheckBoxPreference) findPreference(KEYS[14]);
+		mIoStats = (CheckBoxPreference) findPreference(KEYS[15]);
+		mSentrenice = (CheckBoxPreference) findPreference(KEYS[16]);
+		mTweaks = (CheckBoxPreference) findPreference(KEYS[17]);
+		mSpeedyModified = (CheckBoxPreference) findPreference(KEYS[18]);
+		mLoopSmoothTweak = (CheckBoxPreference) findPreference(KEYS[19]);
 
 		mZipAlign.setOnPreferenceChangeListener(this);
 		mFixPermissions.setOnPreferenceChangeListener(this);
 		mClearCache.setOnPreferenceChangeListener(this);
 		mEnableCron.setOnPreferenceChangeListener(this);
 		mSysSpeedup.setOnPreferenceChangeListener(this);
+		mEnableSystl.setOnPreferenceChangeListener(this);
+		mSdBoost.setOnPreferenceChangeListener(this);
+		mBattery.setOnPreferenceChangeListener(this);
+		mtouch.setOnPreferenceChangeListener(this);
+		mMinFree.setOnPreferenceChangeListener(this);
+		mgpuRenderer.setOnPreferenceChangeListener(this);
+		mSleepers.setOnPreferenceChangeListener(this);
+		mJournalism.setOnPreferenceChangeListener(this);
+		mSqlite.setOnPreferenceChangeListener(this);
+		mWifiSleep.setOnPreferenceChangeListener(this);
+		mIoStats.setOnPreferenceChangeListener(this);
+		mSentrenice.setOnPreferenceChangeListener(this);
+		mTweaky.setOnPreferenceChangeListener(this);
+		mSpeedyModified.setOnPreferenceChangeListener(this);
+		mLoopSmoothTweak.setOnPreferenceChangeListener(this);
 
 		loadValues();
 		copyHelpers();
@@ -131,6 +221,126 @@ public class InitD extends PreferenceFragment implements OnPreferenceChangeListe
 				copyScript(TWEAKS_FILE);
 			}else {
 				deleteInitD(INIT_PATH+TWEAKS_FILE);
+			}
+			return true;
+		}
+		if(pref == mEnableSystl) {
+			if(value) {
+				copyScript(SYSCTL_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SYSCTL_FILE);
+			}
+			return true;
+		}
+		if(pref == mSdBoost) {
+			if(value) {
+				copyScript(SDBOOST_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SDBOOST_FILE);
+			}
+			return true;
+		}
+		if(pref == mBattery) {
+			if(value) {
+				copyScript(BATTERY_FILE);
+			}else {
+				deleteInitD(INIT_PATH+BATTERY_FILE);
+			}
+			return true;
+		}
+		if(pref == mtouch) {
+			if(value) {
+				copyScript(TOUCH_FILE);
+			}else {
+				deleteInitD(INIT_PATH+TOUCH_FILE);
+			}
+			return true;
+		}
+		if(pref == mMinFree) {
+			if(value) {
+				copyScript(MINFREE_FILE);
+			}else {
+				deleteInitD(INIT_PATH+MINFREE_FILE);
+			}
+			return true;
+		}
+		if(pref == mgpuRenderer) {
+			if(value) {
+				copyScript(GPU_FILE);
+			}else {
+				deleteInitD(INIT_PATH+GPU_FILE);
+			}
+			return true;
+		}
+		if(pref == mSleepers) {
+			if(value) {
+				copyScript(SLEEP_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SLEEP_FILE);
+			}
+			return true;
+		}
+		if(pref == mJournalism) {
+			if(value) {
+				copyScript(JOURNAL_FILE);
+			}else {
+				deleteInitD(INIT_PATH+JOURNAL_FILE);
+			}
+			return true;
+		}
+		if(pref == mSqlite) {
+			if(value) {
+				copyScript(SQLITE_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SQLITE_FILE);
+			}
+			return true;
+		}
+		if(pref == mWifiSleep) {
+			if(value) {
+				copyScript(WIFI_FILE);
+			}else {
+				deleteInitD(INIT_PATH+WIFI_FILE);
+			}
+			return true;
+		}
+		if(pref == mIoStats) {
+			if(value) {
+				copyScript(IOS_FILE);
+			}else {
+				deleteInitD(INIT_PATH+IOS_FILE);
+			}
+			return true;
+		}
+		if(pref == mSentrenice) {
+			if(value) {
+				copyScript(SETRENICE_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SETRENICE_FILE);
+			}
+			return true;
+		}
+		if(pref == mTweaky) {
+			if(value) {
+				copyScript(TWEAKY_FILE);
+			}else {
+				deleteInitD(INIT_PATH+TWEAKY_FILE);
+			}
+			return true;
+		}
+		if(pref == mSpeedyModified) {
+			if(value) {
+				copyScript(SPEED_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SPEED_FILE);
+			}
+			return true;
+		}
+		if(pref == mLoopSmoothTweak) {
+			if(value) {
+				copyScript(SMOOTH_FILE);
+			}else {
+				deleteInitD(INIT_PATH+SMOOTH_FILE);
 			}
 			return true;
 		}
