@@ -28,7 +28,7 @@
   <string name="no_backups_found">No encontrados los Backups</string>
   <string name="backups_display">Las copias de seguridad que se mostrará aquí</string>
   <string name="title_about">Acerca de</string>
-  <string name="about_ok">Aceptar</string>
+  <string name="about_ok">OK</string>
   <string name="about_body">
 <![CDATA[
         <b>Colorpickercollection Library & Demo</b><br>
@@ -397,7 +397,7 @@ Si expira el tiempo ACK fuera, comienzo lento se utiliza, ya que es con Tahoe.</
   <string name="governor">Gobernador</string>
   <string name="io">Planificador de I/O</string>
   <string name="sob">Aplicar automáticamente en el arranque</string>
-  <string name="ok">Aceptar</string>
+  <string name="ok">OK</string>
   <string name="cancel">Cancelar</string>
   <string name="cpu_info_list_header">Estado del Núcleo</string>
   <string name="cpu_speed_header">Límites del núcleo</string>
